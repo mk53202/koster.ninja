@@ -1,0 +1,31 @@
+@font-face {
+        font-family: eightbit;
+        src: url('/fonts/3Dventure.ttf');
+}
+
+@font-face {
+	font-family: lego;
+	src: url('/fonts/legothick.ttf');
+}
+
+@font-face {
+	font-family: minecraft;
+        src: url('/fonts/Minecraft.ttf');
+}
+
+@font-face {
+        font-family: baby;
+        src: url('/fonts/baby_blocks.ttf');
+}
+
+@font-face {
+        font-family: juicy;
+        src: url('/fonts/04B_30__.TTF');
+}
+
+
+
+div {
+        font-family: juicy;
+        font-size: 65px;
+}

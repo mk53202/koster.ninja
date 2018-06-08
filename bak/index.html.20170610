@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+@font-face {
+	font-family: eightbit;
+	src: url('fonts/3Dventure.ttf');
+}
+
+div {
+	font-family: eightbit;
+	font-size: 65px;
+}
+
+</style>
+</head>
+<body>
+
+<center>
+
+	<div>
+		<< all your base are belong to taco bell >>
+	</div>
+
+	<br>
+	<br>
+
+	<img src="ninja-8-bit.jpg" alt="ninja">
+
+	<br>
+
+</center>
+
+</body>
+</html>

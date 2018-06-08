@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+@font-face {
+	font-family: eightbit;
+	src: url('fonts/3Dventure.ttf');
+}
+
+div {
+	font-family: eightbit;
+	font-size: 65px;
+}
+
+</style>
+</head>
+<body>
+
+<center>
+
+	<div>
+	Scott Seifert, please remember to restart nginx with: 'sudo service nginx restart', just like every other f'ing daemon in the world. #init.d #RIP2005 
+	</div>
+
+	<br>
+	<br>
+
+	<img src="ninja-8-bit.jpg" alt="ninja">
+
+</center>
+
+</body>
+</html>

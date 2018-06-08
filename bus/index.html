@@ -1,0 +1,65 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+  <meta name="author" content="Alexandre Rebert">
+  <title>Live Bus</title>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link rel="icon" href="favicon.ico" />
+  <link href="css/buttons.css" rel="stylesheet">
+  <link href="css/site.css" rel="stylesheet">
+  <script
+    src="//d2wy8f7a9ursnm.cloudfront.net/bugsnag-2.min.js"
+    data-apikey="AIzaSyCZjegExYeAVl_3Z_QIeh8M8A8FvCaLiHQ">
+  </script>
+</head>
+
+<body>
+
+  <div id="map-canvas"></div>
+
+  <div id="controls">
+    <div class="widget-mylocation">
+      <button class="widget-mylocation-button" id='mylocation'>
+        <div class="widget-mylocation-button-icon-common widget-mylocation-cookieless widget-mylocation-button-normal"></div>
+      </button>
+    </div>
+  </div>
+
+  <div id="overlays">
+  </div>
+
+  <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?libraries=adsense&key=AIzaSyBw5NwtQqUhB_u2MBok6XKsC3PQDtBhYdg"></script>
+  <script src="https://cdn.firebase.com/js/client/1.1.0/firebase.js"></script>
+  <script src="js/vendor/geofire.min.js"></script>
+  <script src="js/vendor/lodash.min.js"></script>
+
+  <!-- Custom JavaScript -->
+  <script src="js/polyfills.js"></script>
+  <script src="js/location_overlay.js"></script>
+  <script src="js/vehicle_overlay.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/location.js"></script>
+  <script src="js/busfeed.js"></script>
+  <script src="js/colors.js"></script>
+  <script src="js/map.js"></script>
+
+  <script type="text/javascript">
+    function map_ready() {
+      setupPolyfills();
+      initLocation(function(lat, lon, city) {
+        updateCenter([lat, lon]);
+        document.title = city.name + ' Live Map';
+        zoom = city.zoom;
+        initializeMap();
+        setupFeed(city.fb_account);
+      });
+    }
+
+    google.maps.event.addDomListener(window, "load", map_ready);
+  </script>
+
+</body>
+</html>
