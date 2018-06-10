@@ -3,43 +3,60 @@
 <head>
   <title>Active Bus Routes</title>
   <script src="http://maps.google.com/maps/api/js?key=AIzaSyCZjegExYeAVl_3Z_QIeh8M8A8FvCaLiHQ" type="text/javascript"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 
 <body>
-  <div id="map" style="height: 600px; width: 700px;">
-</div>
+  <div id="map" style="height: 600px; width: 700px;"></div>
+
+  <div class="trigger">Trigger</div>
+  <div class="result"></div>
+  <div class="log"></div>
+
 <script type="text/javascript">
 
-var locations = [
-  ['Brady Street', 43.05053314605316, -87.8982449816419, 2],
-  ['Jackson Park', 42.98854018420708, -87.96802520751953, 1]
-];
+  $(document).ajaxSuccess(function() {
+    $( ".log" ).text( "Triggered ajaxSuccess handler." );
+  });
 
+  $( ".trigger" ).on( "click", function() {
+    $( ".result" ).load( "ajax/test.html" );
+    var locations = [
+      ['Matt Koster', 43.05053314605316, -87.8982449816419, 2],
+      ['Jim Koster', 42.98854018420708, -87.96802520751953, 1]
+    ];
+  });
 
-    var map = new google.maps.Map(document.getElementById('map'), {
-      zoom: 11,
-      center: new google.maps.LatLng(43.05, -88.05),
-      mapTypeId: google.maps.MapTypeId.ROADMAP
+  var locations = [
+    ['Matt Koster', 43.05053314605316, -87.8982449816419],
+    ['Jackson Park', 42.98854018420708, -87.96802520751953]
+  ];
+
+  var map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 11,
+    center: new google.maps.LatLng(43.05, -88.05),
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+  });
+
+  var infowindow = new google.maps.InfoWindow();
+
+  var marker, i;
+
+  for (i = 0; i < locations.length; i++) {
+    marker = new google.maps.Marker({
+      position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+      map: map
     });
 
+    google.maps.event.addListener(marker, 'click', (function(marker, i) {
+      return function() {
+        infowindow.setContent(locations[i][0]);
+        infowindow.open(map, marker);
+      }
+    })(marker, i));
+  }
 
-    var infowindow = new google.maps.InfoWindow();
-
-    var marker, i;
-
-    for (i = 0; i < locations.length; i++) {
-      marker = new google.maps.Marker({
-        position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-        map: map
-      });
-
-      google.maps.event.addListener(marker, 'click', (function(marker, i) {
-        return function() {
-          infowindow.setContent(locations[i][0]);
-          infowindow.open(map, marker);
-        }
-      })(marker, i));
-    }
   </script>
+
 </body>
 </html>
